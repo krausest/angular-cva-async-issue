@@ -1,20 +1,16 @@
 <h1>ControlValueAccessor and async validation</h1>
 
+<!-- 1 Causes a ExpressionChangedAfterItHasBeenCheckedError -->
+<p>{{fg.valid}}</p>
 <form [formGroup]="fg">
   <app-cvainput formControlName="cvainp"></app-cvainput>
-  <app-cvainput formControlName="cvainp2"></app-cvainput>
   
   In the parent component:
-  <ul>
-    <li> the component is valid? {{fg.controls['cvainp'].valid}}</li>
-    <li> the component is pending? {{fg.controls['cvainp'].pending}}</li>
-    <li> the component is invalid? {{fg.controls['cvainp'].invalid}}</li>
-  </ul>
   <ul>
     <li> the FormGroup is valid? {{fg.valid}}</li>
     <li> the FormGroup is pending? {{fg.pending}}</li>
     <li> the FormGroup is invalid? {{fg.invalid}}</li>
   </ul>
-    <p>{{fg.controls['cvainp'].errors | json}}</p>
-    <p>{{fg.value | json}}</p>
 </form> 
+<!-- 2 Causes NO ExpressionChangedAfterItHasBeenCheckedError -->
+<p>{{fg.valid}}</p>

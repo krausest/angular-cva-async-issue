@@ -12,13 +12,11 @@ export let asyncEvenLength: AsyncValidatorFn = (control: AbstractControl): Promi
 
  export interface ICvainputComponentValue {
   name: string;
-  adress: string;
 }
 
 @Component({
   selector: 'app-cvainput',
   templateUrl: './cvainput.component.html',
-  styleUrls: ['./cvainput.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -35,8 +33,7 @@ export let asyncEvenLength: AsyncValidatorFn = (control: AbstractControl): Promi
 export class CvainputComponent implements OnInit, ControlValueAccessor, Validator {
 
   fg = new FormGroup({
-    name: new FormControl<string>("", { validators:[Validators.required, Validators.min(5), Validators.max(50)], asyncValidators:[asyncEvenLength], nonNullable: true }),
-    adress: new FormControl<string>(""),
+    name: new FormControl<string>("", { validators:[Validators.required, Validators.min(5), Validators.max(50)], asyncValidators:[asyncEvenLength], nonNullable: true })
   })
 
   constructor() { }
@@ -60,14 +57,7 @@ export class CvainputComponent implements OnInit, ControlValueAccessor, Validato
   }
 
   writeValue(value: ICvainputComponentValue | undefined | null): void {
-    console.log("writeValue", value);
-    this.fg.setValue(value ?? {name:'', adress: ''}, {
-      emitEvent: true,
-      onlySelf: false
-    });
-    this.fg.updateValueAndValidity({
-      onlySelf: false
-    });    
+    this.fg.setValue(value ?? {name:''},);
   }
 
   setDisabledState(isDisabled: boolean): void {
@@ -82,7 +72,6 @@ export class CvainputComponent implements OnInit, ControlValueAccessor, Validato
       return this.fg.statusChanges.pipe(
         filter(s => s!="PENDING"),
         map(status => {
-          console.log('pipe', status);
           return status == "VALID" ? null : ({ cavinput: 'invalid' });
         }),
         first()

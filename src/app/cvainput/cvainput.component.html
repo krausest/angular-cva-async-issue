@@ -1,15 +1,10 @@
-
-<input type="text" [formControl]="fg.controls['name']"/>
-<p>In the child component</p>
-<ul>
-    <li>the component is valid? {{fg.controls['name'].valid}}</li>
-    <li>the component is pending? {{fg.controls['name'].pending}}</li>
-    <li>the component is invalid? {{fg.controls['name'].invalid}}</li>
-</ul>
-<ul>
-    <li>the FormGroup is valid? {{fg.valid}}</li>
-    <li>the FormGroup is pending? {{fg.pending}}</li>
-    <li>the FormGroup is invalid? {{fg.invalid}}</li>
-</ul>
-<p>control name errors: {{fg.controls['name'].errors | json}}</p>
-<input type="text" [formControl]="fg.controls['adress']"/>
+<div>
+    <input type="text" [formControl]="fg.controls['name']" />
+    <p>In the child component</p>
+    <ul>
+        <li>the FormGroup is valid? {{fg.valid}}</li>
+        <li>the FormGroup is pending? {{fg.pending}}</li>
+        <li>the FormGroup is invalid? {{fg.invalid}}</li>
+    </ul>
+    <p>control name errors: {{fg.controls['name'].errors | json}}</p>
+</div>
